@@ -1,1 +1,29 @@
-<h1>Welcome to the Employee Management System</h1>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+      <div class="card" style="box-shadow: 0 6px 9px rgba(0,0,0,0.08),0 6px 9px rgba(0,0,0,0.15);">
+        <div class="card-body" style="background-color: azure;">
+          <h1 class="text-center" style="font-weight: 900; font-size: 4em; letter-spacing: 0.05em">EMS</h1>
+          <h3 class="text-center" style="font-size: 1.65em;">Employee Management <br> Systems</h3>
+          <br>
+          <p class="text-center"><a class="btn btn-outline-primary my-2 my-sm-0" href="/accounts/login">Login</a>   <a class="btn btn-outline-primary my-2 my-sm-0" href="/accounts/register/">Sign up</a></p>
+        </div>
+        <div class="card-body" style="background-color: SteelBlue;">
+          <h5 style="color:white;">Key Features</h5>
+          <ul style="color:white;">
+            <li>User registration and authentication</li>
+            <li>Employee creation</li>
+            <li>Lorem Ipsum</li>
+            <li>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</li>
+          <ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+      <h1>Welcome the Employee Management System</h1>
+      <h4> Click here to add an Employee</h4>
+      <a class="btn btn-primary" href="{% url 'employee' %}">Add employee</a>
+      <br>
+      <br>
+      <table>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Department</th>
+          <th>Employee ID</th>
+          <th>Update Employee</th>
+          <th>Delete Employee</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+          <td>{{employee.first_name}}</td>
+          <td>{{employee.last_name}}</td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.phone}}</td>
+          <td>{{employee.department}}</td>
+          <td>{{employee.employee_id}}</td>
+          <td><a class="btn btn-warning" href="{% url 'update_employee' pk=employee.pk %}">Update</a></td>
+          <td><a class="btn btn-danger" href="{% url 'delete_employee' pk=employee.pk %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% if employees.has_other_pages %}
+    <ul class="pagination">
+      {% if employees.has_previous %}
+      <li><a href="?page={{ employees.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in employees.paginator.page_range %}
+      {% if employees.number == i %}
+      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if employees.has_next %}
+      <li><a href="?page={{ employees.next_page_number }}">&raquo;</a></li>
+      {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div>
+</div>
+</div>
+
+
+
+{% endblock %}
